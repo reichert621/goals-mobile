@@ -1,4 +1,7 @@
-const tintColorLight = "#2f95dc";
+import colors from "tailwindcss/colors";
+
+const tintColorLight = colors.blue[500];
+// const tintColorLight = "#2f95dc";
 const tintColorDark = "#fff";
 
 export default {
@@ -7,6 +10,7 @@ export default {
     background: "#fff",
     tint: tintColorLight,
     tabIconDefault: "#ccc",
+    // tabIconDefault: colors.zinc[200],
     tabIconSelected: tintColorLight,
   },
   dark: {
@@ -14,6 +18,7 @@ export default {
     background: "#000",
     tint: tintColorDark,
     tabIconDefault: "#ccc",
+    // tabIconDefault: colors.zinc[200],
     tabIconSelected: tintColorDark,
   },
 };

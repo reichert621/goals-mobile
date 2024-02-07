@@ -114,7 +114,7 @@ const GoalInput = ({
 
         <View className="relative mt-1 flex flex-row items-center">
           <TextInput
-            className="flex-1 rounded-md border border-zinc-200 h-12 px-3 items-center"
+            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center"
             placeholder="0"
             value={value}
             onChangeText={handleChangeInput}
@@ -268,9 +268,11 @@ export default function HomeScreen() {
   const today = dayjs().format("YYYY-MM-DD");
 
   return (
-    <SafeScrollView className="bg-white">
+    <SafeScrollView className="bg-white dark:bg-zinc-950">
       <View className="mt-12 mb-4 px-4">
-        <Text className="font-bold text-zinc-900 text-5xl">Today</Text>
+        <Text className="font-bold text-zinc-900 dark:text-zinc-100 text-5xl">
+          Today
+        </Text>
       </View>
 
       <LogDetails className="px-4" date={today} />
