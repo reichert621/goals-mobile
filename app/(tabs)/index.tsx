@@ -1,6 +1,6 @@
 import { Pressable, Text, TextInput, View } from "react-native";
 import dayjs from "dayjs";
-import React from "react";
+import React, { ReactNode } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import {
   auth,
@@ -26,17 +26,41 @@ function comparator(a: any, b: any) {
 }
 
 function Checkbox({
+  className,
   checked,
   onCheckedChange,
+  children,
 }: {
+  className?: string;
   checked?: boolean;
   onCheckedChange: (checked: boolean) => void;
+  children?: React.ReactNode;
 }) {
+  if (children) {
+    return (
+      <Pressable
+        className={cn("flex flex-row items-center gap-3", className)}
+        onPress={() => onCheckedChange(!checked)}
+      >
+        <View
+          className={cn(
+            "border border-zinc-700 h-6 w-6 items-center justify-center rounded",
+            checked && "bg-zinc-800"
+          )}
+        >
+          {checked && <Ionicons name="checkmark" size={16} color="white" />}
+        </View>
+        {children}
+      </Pressable>
+    );
+  }
+
   return (
     <Pressable
       className={cn(
-        "border border-zinc-700 h-5 w-5 items-center justify-center rounded",
-        checked && "bg-zinc-800"
+        "border border-zinc-700 h-6 w-6 items-center justify-center rounded",
+        checked && "bg-zinc-800",
+        className
       )}
       onPress={() => onCheckedChange(!checked)}
     >
@@ -80,33 +104,33 @@ const GoalInput = ({
     const isDone = !!log && !!log.value;
 
     return (
-      <View key={goal.id} className="mt-3 flex flex-row items-center gap-2">
+      <View key={goal.id} className="mt-3">
         <Checkbox
           checked={isDone}
           onCheckedChange={(checked) => onUpdate(goal, checked ? 1 : 0)}
-        />
-
-        <Text
-          className={cn(
-            "text-base font-medium",
-            isDone
-              ? "text-zinc-400 line-through dark:text-zinc-500"
-              : "text-zinc-700 dark:text-zinc-200"
-          )}
         >
-          {label}
-        </Text>
+          <Text
+            className={cn(
+              "text-lg font-medium",
+              isDone
+                ? "text-zinc-400 line-through dark:text-zinc-500"
+                : "text-zinc-700 dark:text-zinc-200"
+            )}
+          >
+            {label}
+          </Text>
+        </Checkbox>
       </View>
     );
   } else if (type === "number") {
     return (
       <View key={goal.id} className="mt-6">
         <View className="flex flex-row items-center justify-between">
-          <Text className="text-base font-medium text-zinc-700 dark:text-zinc-200">
+          <Text className="text-lg font-medium text-zinc-700 dark:text-zinc-200">
             {label}
           </Text>
-          <View className="rounded-full bg-blue-700 px-2 py-0.5">
-            <Text className="text-sm font-medium tracking-wide text-blue-100">
+          <View className="rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5">
+            <Text className="text-sm font-medium tracking-wide text-blue-500">
               Target: {goal.value} {goal.unit}
             </Text>
           </View>
@@ -116,6 +140,7 @@ const GoalInput = ({
           <TextInput
             className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center"
             placeholder="0"
+            keyboardType="numeric"
             value={value}
             onChangeText={handleChangeInput}
             onBlur={() => onUpdate(goal, Number(value))}
@@ -268,7 +293,10 @@ export default function HomeScreen() {
   const today = dayjs().format("YYYY-MM-DD");
 
   return (
-    <SafeScrollView className="bg-white dark:bg-zinc-950">
+    <SafeScrollView
+      className="bg-white dark:bg-zinc-950"
+      automaticallyAdjustKeyboardInsets
+    >
       <View className="mt-12 mb-4 px-4">
         <Text className="font-bold text-zinc-900 dark:text-zinc-100 text-5xl">
           Today
