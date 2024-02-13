@@ -8,6 +8,7 @@ import Debugger from "@/components/Debugger";
 import { SafeScrollView, SafeView } from "@/components/SafeView";
 
 export default function SettingsScreen() {
+  const { user, isLoading: isLoadingAuth, error: authError } = useAuth();
   const [email, setUserEmail] = React.useState("");
   const [hasSentCode, setHasSentCode] = React.useState(false);
   const [code, setMagicCode] = React.useState("");
@@ -41,6 +42,7 @@ export default function SettingsScreen() {
       setPendingState(true);
       const result = await auth.signInWithMagicCode({ email, code });
       console.log("Success!", result);
+      setMagicCode("");
     } catch (err: any) {
       console.error("Failed to verify magic code:", err);
       alert("Something went wrong:" + err.body?.message);
@@ -51,7 +53,26 @@ export default function SettingsScreen() {
 
   return (
     <SafeView className="bg-white items-center justify-center dark:bg-zinc-950">
-      {hasSentCode ? (
+      {user ? (
+        <View className="p-8 w-full">
+          <View className="mb-4 flex flex-row items-center">
+            <Text className="text-base text-zinc-500 dark:text-zinc-400">
+              Logged in as{" "}
+            </Text>
+            <Text className="text-base text-zinc-900 dark:text-zinc-100 font-semibold">
+              {user.email}
+            </Text>
+          </View>
+          <Pressable
+            className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3 dark:border-zinc-200 dark:bg-zinc-100"
+            onPress={() => auth.signOut()}
+          >
+            <Text className="text-white font-medium dark:text-zinc-900">
+              Sign out
+            </Text>
+          </Pressable>
+        </View>
+      ) : hasSentCode ? (
         <View className="p-8 gap-2 w-full">
           <View className="mb-2">
             <Text className="text-2xl text-zinc-900 dark:text-zinc-100 font-bold mb-1">
@@ -70,7 +91,7 @@ export default function SettingsScreen() {
           />
           <Pressable
             className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3 dark:border-zinc-200 dark:bg-zinc-100"
-            disabled={!code}
+            disabled={!code || isPending}
             onPress={handleVerifyMagicCode}
           >
             <Text className="text-white font-medium dark:text-zinc-900">
@@ -97,7 +118,7 @@ export default function SettingsScreen() {
           />
           <Pressable
             className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3 dark:border-zinc-200 dark:bg-zinc-100"
-            disabled={!email}
+            disabled={!email || isPending}
             onPress={handleSendMagicCode}
           >
             <Text className="text-white font-medium dark:text-zinc-900">
