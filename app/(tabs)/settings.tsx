@@ -5,7 +5,7 @@ import colors from "tailwindcss/colors";
 import { auth, useAuth } from "@instantdb/react-native";
 
 import Debugger from "@/components/Debugger";
-import { SafeScrollView } from "@/components/SafeView";
+import { SafeScrollView, SafeView } from "@/components/SafeView";
 
 export default function SettingsScreen() {
   const [email, setUserEmail] = React.useState("");
@@ -50,16 +50,9 @@ export default function SettingsScreen() {
   };
 
   return (
-    <SafeScrollView className="bg-white dark:bg-zinc-950">
-      <View className="mt-8 mb-4 px-4">
-        <Text className="font-bold text-zinc-900 dark:text-zinc-100 text-4xl">
-          Settings
-        </Text>
-        <View className="h-px bg-zinc-200 dark:bg-zinc-800 my-2" />
-      </View>
-
+    <SafeView className="bg-white items-center justify-center dark:bg-zinc-950">
       {hasSentCode ? (
-        <View className="p-4 gap-2">
+        <View className="p-8 gap-2 w-full">
           <View className="mb-2">
             <Text className="text-2xl text-zinc-900 dark:text-zinc-100 font-bold mb-1">
               Enter verification code
@@ -69,7 +62,7 @@ export default function SettingsScreen() {
             </Text>
           </View>
           <TextInput
-            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
+            className="rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
             placeholder="000000"
             autoCapitalize="none"
             value={code}
@@ -86,7 +79,7 @@ export default function SettingsScreen() {
           </Pressable>
         </View>
       ) : (
-        <View className="p-4 gap-2">
+        <View className="p-8 gap-2 w-full">
           <View className="mb-2">
             <Text className="text-2xl text-zinc-900 dark:text-zinc-100 font-bold mb-1">
               Log in
@@ -96,7 +89,7 @@ export default function SettingsScreen() {
             </Text>
           </View>
           <TextInput
-            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
+            className="rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
             placeholder="alex@example.com"
             autoCapitalize="none"
             value={email}
@@ -113,6 +106,6 @@ export default function SettingsScreen() {
           </Pressable>
         </View>
       )}
-    </SafeScrollView>
+    </SafeView>
   );
 }
