@@ -138,7 +138,7 @@ const GoalInput = ({
 
         <View className="relative mt-1 flex flex-row items-center">
           <TextInput
-            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center"
+            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
             placeholder="0"
             keyboardType="numeric"
             value={value}

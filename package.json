@@ -42,7 +42,8 @@
     "react-native-screens": "~3.29.0",
     "react-native-web": "~0.19.6",
     "tailwind-merge": "^2.2.1",
-    "expo-checkbox": "~2.7.0"
+    "expo-checkbox": "~2.7.0",
+    "expo-updates": "~0.24.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
