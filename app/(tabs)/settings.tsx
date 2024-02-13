@@ -50,60 +50,66 @@ export default function SettingsScreen() {
   };
 
   return (
-    <SafeScrollView className="bg-white">
+    <SafeScrollView className="bg-white dark:bg-zinc-950">
       <View className="mt-8 mb-4 px-4">
-        <Text className="font-bold text-zinc-900 text-4xl">Settings</Text>
-        <View className="h-px bg-zinc-200 my-2" />
+        <Text className="font-bold text-zinc-900 dark:text-zinc-100 text-4xl">
+          Settings
+        </Text>
+        <View className="h-px bg-zinc-200 dark:bg-zinc-800 my-2" />
       </View>
 
       {hasSentCode ? (
         <View className="p-4 gap-2">
           <View className="mb-2">
-            <Text className="text-2xl text-zinc-900 font-bold mb-1">
+            <Text className="text-2xl text-zinc-900 dark:text-zinc-100 font-bold mb-1">
               Enter verification code
             </Text>
-            <Text className="text-base text-zinc-700">
+            <Text className="text-base text-zinc-700 dark:text-zinc-300">
               A login code was sent to {email}
             </Text>
           </View>
           <TextInput
-            className="border bg-zinc-100 rounded flex-1 border-zinc-200 p-3"
+            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
             placeholder="000000"
             autoCapitalize="none"
             value={code}
             onChangeText={(text) => setMagicCode(text)}
           />
           <Pressable
-            className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3"
+            className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3 dark:border-zinc-200 dark:bg-zinc-100"
             disabled={!code}
             onPress={handleVerifyMagicCode}
           >
-            <Text className="text-white font-medium">Send code</Text>
+            <Text className="text-white font-medium dark:text-zinc-900">
+              Verify code
+            </Text>
           </Pressable>
         </View>
       ) : (
         <View className="p-4 gap-2">
           <View className="mb-2">
-            <Text className="text-2xl text-zinc-900 font-bold mb-1">
+            <Text className="text-2xl text-zinc-900 dark:text-zinc-100 font-bold mb-1">
               Log in
             </Text>
-            <Text className="text-base text-zinc-700">
+            <Text className="text-base text-zinc-700 dark:text-zinc-300">
               Enter your email to receive a login code.
             </Text>
           </View>
           <TextInput
-            className="border bg-zinc-100 rounded flex-1 border-zinc-200 p-3"
+            className="flex-1 rounded-md border border-zinc-200 dark:border-zinc-700 h-12 px-3 items-center dark:text-zinc-100"
             placeholder="alex@example.com"
             autoCapitalize="none"
             value={email}
             onChangeText={(text) => setUserEmail(text)}
           />
           <Pressable
-            className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3"
+            className="bg-zinc-900 border justify-center items-center border-zinc-800 rounded p-3 dark:border-zinc-200 dark:bg-zinc-100"
             disabled={!email}
             onPress={handleSendMagicCode}
           >
-            <Text className="text-white font-medium">Send code</Text>
+            <Text className="text-white font-medium dark:text-zinc-900">
+              Send code
+            </Text>
           </Pressable>
         </View>
       )}
