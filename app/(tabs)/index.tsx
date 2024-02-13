@@ -129,8 +129,8 @@ const GoalInput = ({
           <Text className="text-lg font-medium text-zinc-700 dark:text-zinc-200">
             {label}
           </Text>
-          <View className="rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5">
-            <Text className="text-sm font-medium tracking-wide text-blue-500">
+          <View className="rounded-full bg-blue-50 border border-blue-200 px-2 py-0.5 dark:bg-blue-900 dark:border-blue-800">
+            <Text className="text-sm font-medium tracking-wide text-blue-500 dark:text-blue-100">
               Target: {goal.value} {goal.unit}
             </Text>
           </View>
