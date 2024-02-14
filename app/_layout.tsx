@@ -9,7 +9,6 @@ import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client
 import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AppStateStatus, Platform } from "react-native";
-import { init, useQuery, transact, tx } from "@instantdb/react-native";
 
 import "../global.css";
 
@@ -24,9 +23,6 @@ export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "(tabs)",
 };
-
-// Initialize InstantDB
-init({ appId: "776cf290-5f95-40e1-b28e-ebdff591af24" });
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();

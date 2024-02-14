@@ -2,14 +2,13 @@ import { Pressable, Text, TextInput, View } from "react-native";
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import colors from "tailwindcss/colors";
-import { auth, useAuth } from "@instantdb/react-native";
 
-import Debugger from "@/components/Debugger";
+import { auth, useAuth } from "@/utils/instant";
 import { SafeScrollView, SafeView } from "@/components/SafeView";
 
 export default function SettingsScreen() {
   const { user, isLoading: isLoadingAuth, error: authError } = useAuth();
-  const [email, setUserEmail] = React.useState("");
+  const [email, setUserEmail] = React.useState("reichertjalex@gmail.com");
   const [hasSentCode, setHasSentCode] = React.useState(false);
   const [code, setMagicCode] = React.useState("");
   const [isPending, setPendingState] = React.useState(false);

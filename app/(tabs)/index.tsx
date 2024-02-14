@@ -1,18 +1,11 @@
 import { Pressable, Text, TextInput, View } from "react-native";
 import dayjs from "dayjs";
-import React, { ReactNode } from "react";
+import React from "react";
 import { Ionicons } from "@expo/vector-icons";
-import {
-  auth,
-  id,
-  transact,
-  tx,
-  useAuth,
-  useQuery,
-} from "@instantdb/react-native";
+import { id, tx } from "@instantdb/react-native";
 
 import { cn } from "@/utils";
-import Debugger from "@/components/Debugger";
+import { db, useQuery, transact } from "@/utils/instant";
 import { SafeScrollView } from "@/components/SafeView";
 
 function comparator(a: any, b: any) {
