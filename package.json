@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.0",
-    "@instantdb/react-native": "^0.7.1",
+    "@instantdb/react-native": "^0.7.3",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-community/netinfo": "^11.1.0",
     "@react-navigation/native": "^6.0.2",
